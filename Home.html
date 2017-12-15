@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+  <title>VTOP-VIT</title>
+<style>
+
+body 
+{
+  background-color: #DCDCDC;
+  font-family: "Comic Sans MS";
+  transition: background-color .5s;
+}
+
+.sidenav {
+    padding-top: 60px;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    overflow-y:scroll; 
+    transition: 0.5s;
+    color:#818181;
+}
+
+.sidenav span {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.sidenav span:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    cursor:pointer;
+}
+div.panel 
+{
+    padding: 0 18px;
+    text-decoration: none;
+    font-size: 16px;
+    max-height: 0;
+    color: #818181;
+    overflow: hidden;
+    display: block;
+    transition: max-height 0.3s ease-out;
+    cursor: pointer;
+}
+span.accordion:after {
+    content: '\002B';
+    color: #818181;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+span.accordion.active:after {
+    content: "\2212";
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen {
+  .sidenav {padding-top: 15px;}
+  .sidenav span.accordion{font-size: 18px;}
+}
+</style>
+
+<style>
+  .dropBox
+  {
+    margin-left: 10%;
+    margin-right: 10%;
+    height:250px;
+    width: 80%;
+    transition: 0.3s;
+    border: 1px solid #A0B0E0;
+    font-family: "Courier New";
+    border-radius: 4px;
+  }
+  .header
+  {
+    text-align: center;
+    height:40px;
+    font-size: 35px;
+    background-color: #A0B0E0;
+    color: black;
+    margin-top: 0;
+  }
+  .choice
+  {
+    margin-left: 50px;
+    font-size: 18px;
+    margin-top: 20px;
+    color:black;
+  }
+  select
+  {
+    border: 1px solid black;
+    outline: none;
+    height: 40px;
+    width: 400px;
+    color: black;
+    font-size: 16px;
+    margin-left: 50px;
+    background: transparent;
+  }
+  button[type="submit"]
+  {
+    border: none;
+    outline: none;
+    cursor:pointer;
+    margin-left: 80px;
+    margin-top: 20px;
+    background-color: #A0B0E0;
+    color:#DCDCDC;
+    height: 40px;
+    width: 230px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+  button[type="submit"]:hover
+  {
+    color:black;
+    height: 45px;
+    width: 235px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    border: none;
+  }
+  #record
+  {
+    color:red;
+    margin-left: 30%;
+    padding:20px;
+    font-size: 20px;
+    font-family: "Palatino";
+  }
+  #image1,#image2
+  {
+    margin-left: 300px;
+    padding-bottom: 30px;
+  }
+
+  </style>
+
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <span href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</span><br><br>
+  <span href="#" class="accordion">&raquo; ACADEMICS</span>
+  <div class="panel" id="panel">
+    <span onclick="mainFunc(event,'')">&#9998; My Curriculum</span>
+    <span onclick="mainFunc(event,'box','Time Table',2)">&#9998; Time Table</span>
+    <span onclick="mainFunc(event,'box','Class Attendence',3)">&#9998; Class Attendence</span>
+    <span onclick="mainFunc(event,'')">&#9998; Course Page</span>
+    <span onclick="mainFunc(event,'box','Co-extra Curriculum',1)">&#9998; Co-extra Curriculum</span>
+    <span onclick="mainFunc(event,'box','Academic Regulations',3)">&#9998; Regulation</span>
+    <span onclick="mainFunc(event,'box','Wishlist Registration',2)">&#9998; Wishlist Registration</span>
+    <span onclick="mainFunc(event,'box','Industrial Internship',3)">&#9998; Internship</span>
+    <span onclick="mainFunc(event,'box','SET Conference Registration',3)">&#9998; SET Conference Registration</span>
+    <span onclick="mainFunc(event,'box','QC Meeting',1)">&#9998; QC Meeting</span>
+    <span onclick="mainFunc(event,'box','Project',1)">&#9998; Project</span>
+  </div>
+  <span href="#" class="accordion">&raquo; RESEARCH</span>
+  <div class="panel" id="panel">
+    <span onclick="mainFunc(event,'box','My Research Profile',1)">&#9820; My Research Profile</span>
+    <span>&#9820; Registration Status</span>
+  </div>
+  <span href="#" class="accordion">&raquo; PROCTOR</span>
+  <div class="panel" id="panel">
+    <span onclick="mainFunc(event,'box','Proctor Details',2)">&#9962; View Proctor Detail</span>
+    <span onclick="mainFunc(event,'box','Proctor Message',3)">&#9962; View Proctor Message</span>
+    <span>&#9962; Send Message</span>
+  </div>
+  <span href="#" class="accordion">&raquo; SERVICES</span>
+  <div class="panel" id="panel">
+    <span>&#9917; Physical Education</span>
+    <span>&#9951; Transport</span>
+  </div>
+  <span href="#" class="accordion">&raquo; PAYMENTS</span>
+  <div class="panel" id="panel">
+    <span>&dollar; Payments</span>
+    <span>&dollar; Payment Receipts</span>
+  </div>
+  <span href="#" class="accordion">&raquo; LIBRARY</span>
+  <div class="panel" id="panel">
+    <span onclick="mainFunc(event,'box','Library',3)">&#10033; Library</span>
+  </div>
+  <span href="#" class="accordion">&raquo; MY INFO</span>
+  <div class="panel" id="panel">
+    <span>&#9822; VIT Gmail Credentials</span>
+    <span>&#9822; Acknowledgement View</span>
+    <span>&#9822; Profile Information</span>
+  </div>
+  <span href="#" class="accordion">&raquo; COMPREHENSIVE EXAM</span>
+  <div class="panel" id="panel">
+    <span onclick="mainFunc(event,'box','Comprehensive Exam',1)">&#9823; Comprehensive Exam</span>
+    <span>&#9823; Question Preview</span>
+    <span onclick="mainFunc(event,'box','Exam Information',1)">&#9823; Exam Info</span>
+  </div>
+  <span href="#" class="accordion">&raquo; EXAMINATIONS</span>
+  <div class="panel" id="panel">
+    <span>&#9785; Exam Schedule</span>
+    <span>&#9785; Digital Assignment Upload</span>
+    <span>&#9785; Mark View</span>
+    <span>&#9785; Grade View</span>
+    <span>&#9785; DigitalPad Device Credentials</span>
+  </div>
+  <span href="#" class="accordion">&raquo; CIRCULAR</span>
+  <div class="panel" id="panel">
+    <span>&#10149; FAQ</span>
+  </div>
+  <span href="#" class="accordion">&raquo; HELP</span>
+  <div class="panel" id="panel">
+    <span onclick="mainFunc(event,'box','Internship',3)">&#9755; Internship Manual</span>
+  </div>
+  <span href="#" class="accordion">&raquo; HOSTEL</span>
+  <div class="panel" id="panel">
+    <span>&#9962; Hostel Leave</span>
+    <span>&#9962; Apply for Mess change</span>
+    <span>&#9962; Apply for Lab Permission</span>
+  </div>
+  <span href="#" class="accordion">&raquo; MY ACCOUNT</span>
+  <div class="panel" id="panel">
+    <span>&#10051; Change Password</span>
+  </div>
+</div>
+
+<div id="main">
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;MENU</span>
+</div>
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "270px";
+    document.getElementById("main").style.marginLeft = "270px";
+    document.getElementById("box").style.marginLeft = "270px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    document.getElementById("box").style.marginLeft = "10%";
+    document.body.style.backgroundColor = "#DCDCDC";
+}
+</script>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() 
+  {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+</script>
+
+<div class="dropBox" id="box">
+    <h2 class="header" id="header"><font face="comic sans"></font><h2>
+      <p class="choice">SEMESTER NAME</p>
+      <form>
+        <select id="semester">
+          <option value="none">--Choose a Semester</option>
+          <option value="fall">Fall Semester 2017-18</option>
+          <option value="winter">Winter Semester 2017-18</option>
+        </select>
+      </form>
+      <button type="Submit" id="Button">View</button>
+   </div>
+     <p id="record"></p>
+     <img id="image1">
+     <img id="image2">
+<script>
+function mainFunc(evt, header,head_text,x)
+{
+    var i, tabcontent, tablinks;
+    var content=document.getElementsByClassName("choice");
+    for (i=0;i<content.length; i++) 
+    {
+        content[i].style.display="block";
+    }
+    document.getElementById("semester").style.display="block";
+    document.getElementById("Button").style.display="block";
+    document.getElementById("record").innerHTML="";
+    document.getElementById("image1").style.display="none";
+    document.getElementById("image2").style.display="none";
+    tabcontent=document.getElementsByClassName("dropBox");
+    for (i=0;i<tabcontent.length; i++) 
+    {
+        tabcontent[i].style.display="none";
+    }
+    tablinks=document.getElementsByClassName("panel");
+    for (i=0;i<tablinks.length; i++) 
+    {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(header).style.display = "block";<!--main line-->
+    evt.currentTarget.className += " active";
+    document.body.style.backgroundColor = "#DCDCDC";
+    document.getElementById("header").innerHTML=head_text;
+    if(x===1)
+    {
+      document.getElementById("Button").onclick=function()
+      {
+        document.getElementById("record").innerHTML="No Record Found";
+      };
+    }
+  if(x===2)
+    {
+      document.getElementById("Button").onclick=function()
+      {
+        var sem=document.getElementById("semester").value;
+        if(sem==="fall")
+         {
+           if(head_text==="Time Table");
+            {
+              document.getElementById("record").innerHTML="";
+              var y=document.getElementById("image1");
+              y.setAttribute("src","ttf1.jpg");
+              y.style.display="block";
+              var z=document.getElementById("image2");
+              z.setAttribute("src","ttf2.jpg");
+              z.style.display="block";
+            }
+          if(head_text==="Wishlist Registration")
+          {
+            document.getElementById("record").innerHTML="There was no Wishlist Registration in First Semester. Visit a doctor";
+            document.getElementById("image1").style.display="none";
+            document.getElementById("image2").style.display="none";
+          }
+        }
+      if(sem==="winter")
+        {
+          if(head_text==="Time Table");
+            {
+              document.getElementById("record").innerHTML="";
+              var y=document.getElementById("image1");
+              y.setAttribute("src","ttw1.png");
+              y.style.display="block";
+              var z=document.getElementById("image2");
+              z.setAttribute("src","ttw2.png");
+              z.style.display="block";
+            } 
+            if(head_text==="Wishlist Registration")
+            {
+              document.getElementById("record").innerHTML="";
+              var y=document.getElementById("image1");
+              y.setAttribute("src","wishlist.png");
+              y.style.display="block";
+              document.getElementById("image2").style.display="none";
+            }
+         }
+      };
+  } 
+  if(head_text==="Proctor Details")
+            {
+              document.getElementById("record").innerHTML="";
+              var y=document.getElementById("image1");
+              y.setAttribute("src","proctor.jpg");
+              y.style.display="block";
+              document.getElementById("image2").style.display="none";
+              x=3;
+            }
+  if(x===3)
+  {
+   var content=document.getElementsByClassName("choice");
+    for (i=0;i<content.length; i++) 
+    {
+        content[i].style.display="none";
+    }
+    document.getElementById("semester").style.display="none";
+    document.getElementById("Button").style.display="none";
+  }
+  <!--COULD NOT COMPLETE-->
+}
+</script>
+</body>
+</html> 
